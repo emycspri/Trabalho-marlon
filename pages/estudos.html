@@ -9,12 +9,28 @@
     <link rel="stylesheet" href="../css/estudos.css">
 
     <!-- FONTES -->
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Nunito:wght@300;600&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
     <body>
 
         <header>
-            <img src="logo.png" alt="Logo"> <!-- pode trocar pela imagem real -->
+            <div class="nav-inner">
+                <div class="logo">
+                    <img src="../images/Rectangle 1.png" alt="Logo" class="logo-img">
+                </div>
+                <button class="menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="resultados.html">Resultados</a></li>
+                        <li><a href="estudos.html">Estudos</a></li>
+                    </ul>
+                </nav>
+            </div>
         </header>
 
     <!-- ================= SEÇÃO 1 ================= -->
@@ -66,5 +82,14 @@
             </p>
         </section>
 
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    </script>
     </body>
 </html>

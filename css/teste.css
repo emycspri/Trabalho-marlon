@@ -10,9 +10,84 @@ body{
 }
 
 header{
-    display:flex; justify-content:center; align-items:center;
-    gap:40px; padding:18px 0; border-bottom:2px solid #ececec;
-    font-weight:600;
+    background: white;
+    border-bottom: 2px solid #ececec;
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.nav-inner {
+    width: 100%;
+    max-width: 980px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 36px;
+    display: block;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 36px;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--texto);
+    font-weight: 600;
+}
+
+/* Menu Hambúrguer */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    gap: 6px;
+    z-index: 1001;
+    width: 40px;
+    height: 40px;
+}
+
+.menu-toggle span {
+    width: 26px;
+    height: 3px;
+    background-color: var(--texto);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(10px);
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /* 📊 BARRA DE PROGRESSO */
@@ -55,3 +130,87 @@ button{
 }
 button:disabled{opacity:.4; cursor:no-drop;}
 button:hover:not(:disabled){transform:scale(1.05);}
+
+/* Responsividade */
+@media(max-width: 425px){
+    header{padding:12px 20px}
+    
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .nav-inner {
+        position: relative;
+    }
+    
+    nav {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: white;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    nav.active {
+        max-height: 300px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 20px 0;
+    }
+    
+    nav ul li {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+    
+    nav a {
+        display: block;
+        padding: 8px 20px;
+        font-size: 16px;
+    }
+    
+    .logo-img {
+        height: 28px;
+    }
+    
+    .carousel {
+        height: calc(100vh - 80px);
+    }
+    
+    .slide h1 {
+        font-size: 24px;
+        padding: 0 20px;
+    }
+    
+    .slide p {
+        font-size: 16px;
+        padding: 0 20px;
+    }
+    
+    .options {
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    .options label {
+        font-size: 16px;
+    }
+    
+    button {
+        font-size: 14px;
+        padding: 8px 18px;
+    }
+}

@@ -5,18 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Métrica TC</title>
 <link rel="stylesheet" href="../css/teste.css">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Nunito:wght@300;600&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <header>
-    <img src="logo.png" alt="logo">
-    <nav>
-        <a>Home</a>
-        <a>Resultados</a>
-        <a>Estudos</a>
-    </nav>
+    <div class="nav-inner">
+        <div class="logo">
+            <img src="../images/Rectangle 1.png" alt="Logo" class="logo-img">
+        </div>
+        <button class="menu-toggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resultados.html">Resultados</a></li>
+                <li><a href="estudos.html">Estudos</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
 <!-- 🔥 Barra de progresso -->
@@ -77,6 +88,15 @@
 
 </div>
 
+<script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    
+    menuToggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+</script>
 <script src="../js/teste.js"></script>
 </body>
 </html>
