@@ -7,7 +7,7 @@
 
 body {
   margin: 0;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   background: var(--fundo);
   color: var(--texto);
   line-height: 1.6;
@@ -20,7 +20,6 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Josefin Sans', sans-serif;
 }
 
 .nav-inner {
@@ -97,25 +96,402 @@ nav a {
 main {
   padding: 80px 20px;
   text-align: center;
+  background: #f9f5f4;
+  min-height: calc(100vh - 70px);
+}
+
+.resultado-container {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 h1 {
-  font-family: 'Baloo 2', cursive;
-  font-size: 36px;
+  font-size: 48px;
   color: var(--titulo);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.formula {
+  font-size: 42px;
+  color: #4a2f2f;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.descricao {
+  max-width: 650px;
+  margin: 0 auto 50px;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--texto);
+}
+
+.reta-container {
+  margin: 60px auto;
+  max-width: 800px;
+  position: relative;
+}
+
+.marcadores-wrapper {
+  height: 60px;
+  position: relative;
+  max-width: 750px;
+  margin: 0 auto 10px;
+}
+
+.marcador {
+  font-size: 48px;
+  font-weight: 700;
+  position: absolute;
+  top: 0;
+  transition: left 0.3s ease;
+}
+
+.x-marker {
+  color: #d46b6b;
+}
+
+.y-marker {
+  color: #7bc47f;
+}
+
+.regua {
+  max-width: 750px;
+  margin: 0 auto;
+  position: relative;
+  padding: 20px 0;
+}
+
+.regua-linha {
+  height: 6px;
+  background: #B87C7C;
+  border-radius: 0;
+  position: relative;
+}
+
+.regua-marcacoes {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+  top: 20px;
+}
+
+.marca {
+  width: 2px;
+  height: 18px;
+  background: #B87C7C;
+  transform: translateY(-6px);
+}
+
+.marca.grande {
+  height: 28px;
+  width: 3px;
+  background: #A86B6B;
+}
+
+.regua-numeros {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 52px;
+  font-size: 14px;
+  color: #3d3131;
+  font-weight: 500;
+  padding: 0 0;
+}
+
+.numero-regua {
+  flex: 0 0 auto;
+  text-align: center;
+  min-width: 20px;
+}
+
+.distancia-info {
+  margin-top: 35px;
+  text-align: center;
+}
+
+.linha-distancia {
+  height: 5px;
+  background: #8B5A5A;
+  max-width: 750px;
+  margin: 0 auto 18px;
+  border-radius: 0;
+  transition: width 0.3s ease, margin-left 0.3s ease;
+  position: relative;
+}
+
+.linha-distancia::before,
+.linha-distancia::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: #6B4242;
+}
+
+.linha-distancia::before {
+  left: 0;
+}
+
+.linha-distancia::after {
+  right: 0;
+}
+
+.casas-distancia {
+  font-size: 24px;
+  color: var(--texto);
+  font-weight: 700;
+  margin: 0;
+}
+
+#distanciaValor {
+  color: var(--titulo);
+  font-size: 28px;
+}
+
+.botoes {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 60px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 26px;
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  min-width: 160px;
+  background-color: #87C387;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform .14s ease, box-shadow .14s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Seção de Interpretação */
+.interpretacao-section {
+  background: var(--fundo);
+  padding: 80px 20px;
+}
+
+.interpretacao-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.interpretacao-intro {
+  font-size: 18px;
+  color: var(--texto);
+  margin-bottom: 50px;
+  line-height: 1.6;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.escala-visual {
+  max-width: 500px;
+  margin: 0 auto 50px;
+}
+
+.escala-item {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 25px;
+}
+
+.escala-label {
+  font-size: 22px;
+  font-weight: 600;
+  min-width: 160px;
+  text-align: right;
+}
+
+.escala-item.muito-bom .escala-label {
+  color: #7bc47f;
+}
+
+.escala-item.bom .escala-label {
+  color: #A8D4A8;
+}
+
+.escala-item.razoavel .escala-label {
+  color: #C9A961;
+}
+
+.escala-item.insuficiente .escala-label {
+  color: #E89B5C;
+}
+
+.escala-item.pessimo .escala-label {
+  color: #D46B6B;
+}
+
+.escala-barra {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.escala-linha {
+  height: 4px;
+  background: #6B4242;
+  flex: 1;
+  max-width: 120px;
+}
+
+.escala-range {
+  font-size: 18px;
+  color: var(--titulo);
+  font-weight: 600;
+  min-width: 80px;
+}
+
+.interpretacao-texto {
+  margin-top: 50px;
+  padding: 25px;
+  background: #f9f5f4;
+  border-radius: 12px;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.interpretacao-texto p {
+  font-size: 17px;
+  color: var(--texto);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Seção de Estudo */
+.estudo-section {
+  background: var(--rosa-claro);
+  padding: 80px 20px;
+}
+
+.estudo-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.estudo-container h2 {
+  font-size: 48px;
+  color: var(--titulo);
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.estudo-subtitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--texto);
+  margin-bottom: 30px;
+}
+
+.estudo-intro {
+  font-size: 17px;
+  color: var(--texto);
+  line-height: 1.6;
+  margin-bottom: 35px;
+  text-align: left;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.estudo-metodos {
+  max-width: 750px;
+  margin: 0 auto 50px;
+  text-align: left;
+}
+
+.estudo-metodos p {
+  font-size: 16px;
+  color: var(--texto);
+  line-height: 1.6;
   margin-bottom: 20px;
 }
 
-p {
-  max-width: 750px;
-  margin: 0 auto;
-  font-size: 18px;
-  font-weight: 300;
+.citacao {
+  font-style: italic;
+  font-size: 15px;
+  color: var(--titulo);
+  margin-top: 30px;
+  text-align: center;
 }
 
 /* Responsividade */
-@media(max-width: 425px){
-  header{padding:12px 20px}
+@media(max-width: 720px) {
+  h1 {
+    font-size: 36px;
+  }
+  
+  .formula {
+    font-size: 32px;
+  }
+  
+  .descricao {
+    font-size: 17px;
+  }
+  
+  .marcadores-wrapper {
+    gap: 180px;
+  }
+  
+  .marcador {
+    font-size: 38px;
+  }
+  
+  .regua {
+    max-width: 90%;
+  }
+  
+  .regua-numeros {
+    font-size: 11px;
+  }
+  
+  .regua-marcacoes .marca {
+    height: 12px;
+  }
+  
+  .regua-marcacoes .marca.grande {
+    height: 18px;
+  }
+  
+  .distancia-info {
+    margin: 28px auto 0;
+  }
+  
+  .casas-distancia {
+    font-size: 20px;
+  }
+}
+
+@media(max-width: 425px) {
+  header {
+    padding: 12px 20px;
+  }
   
   .menu-toggle {
     display: flex;
@@ -173,10 +549,102 @@ p {
   }
   
   h1 {
+    font-size: 32px;
+  }
+  
+  .formula {
     font-size: 28px;
   }
   
-  p {
+  .descricao {
     font-size: 16px;
+    padding: 0 10px;
+  }
+  
+  .marcadores-wrapper {
+    gap: 120px;
+  }
+  
+  .marcador {
+    font-size: 32px;
+  }
+  
+  .regua {
+    max-width: 90%;
+  }
+  
+  .regua-numeros {
+    font-size: 10px;
+  }
+  
+  .regua-marcacoes .marca {
+    height: 10px;
+    width: 1.5px;
+  }
+  
+  .regua-marcacoes .marca.grande {
+    height: 16px;
+    width: 2px;
+  }
+  
+  .distancia-info {
+    margin: 22px auto 0;
+  }
+  
+  .casas-distancia {
+    font-size: 18px;
+  }
+  
+  #distanciaValor {
+    font-size: 22px;
+  }
+  
+  .botoes {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+  
+  .btn {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .interpretacao-section,
+  .estudo-section {
+    padding: 60px 20px;
+  }
+  
+  .escala-visual {
+    max-width: 100%;
+  }
+  
+  .escala-item {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .escala-label {
+    font-size: 18px;
+    min-width: 100%;
+    text-align: center;
+  }
+  
+  .escala-barra {
+    justify-content: center;
+  }
+  
+  .escala-range {
+    font-size: 16px;
+  }
+  
+  .estudo-container h2 {
+    font-size: 32px;
+  }
+  
+  .interpretacao-intro,
+  .estudo-intro,
+  .estudo-metodos p {
+    font-size: 15px;
   }
 }

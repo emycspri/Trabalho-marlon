@@ -4,7 +4,10 @@ const prev = document.querySelectorAll(".prev");
 const progressBar = document.getElementById("progressBar");
 
 let index = 0;
-let total = 0;
+let resiliencia = 0;
+let inteligencia = 0;
+let curso = 0;
+let instituicao = 0;
 update();
 
 // Atualiza transição dos slides
@@ -24,16 +27,20 @@ next.forEach(btn=>{
 
         radios.forEach(r=>{
             if(r.checked){
-                total += Number(r.value);
+                const valor = Number(r.value);
+                const nome = r.name;
+                
+                if(nome === 'resiliencia') resiliencia = valor;
+                else if(nome === 'inteligencia') inteligencia = valor;
+                else if(nome === 'curso') curso = valor;
+                else if(nome === 'instituicao') instituicao = valor;
+                
                 marcado = true;
-                r.checked = false; // limpa para não somar de novo
             }
         });
 
         if(btn.classList.contains("finish")){ // se for botão final
-            mostrarResultado();
-            index++;
-            update();
+            salvarResultado();
             return;
         }
 
@@ -56,14 +63,17 @@ prev.forEach(btn=>{
 });
 
 // 🔥 Função final de resultado
-function mostrarResultado(){
-    document.getElementById("resultadoValor").innerText = total;
-
-    let msg = "";
-
-    if(total <= 120) msg = "Você possui níveis moderados, seu desenvolvimento é consistente com espaço para evolução.";
-    else if(total <= 240) msg = "Bom desempenho! Indica força mental e estabilidade acima da média.";
-    else msg = "Excelência total! Sua capacidade emocional e cognitiva é extremamente elevada.";
-
-    document.getElementById("interpretacao").innerText = msg;
+function salvarResultado(){
+    // X = R + I (Resiliência + Inteligência)
+    const X = resiliencia + inteligencia;
+    
+    // Y = C + I (Curso + Instituição)
+    const Y = curso + instituicao;
+    
+    // Salvar no localStorage
+    localStorage.setItem('valorX', X);
+    localStorage.setItem('valorY', Y);
+    
+    // Redirecionar para página de resultados
+    window.location.href = 'resultados.html';
 }

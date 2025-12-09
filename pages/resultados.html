@@ -30,8 +30,109 @@
     </header>
 
     <main>
-        <h1>Resultados</h1>
-        <p>Conteúdo em desenvolvimento.</p>
+        <div class="resultado-container">
+            <h1>Resultado</h1>
+            <h2 class="formula">X != Y</h2>
+            
+            <p class="descricao">Agora vemos na reta o tamanho da diferença entre X e Y ou entre VOCÊ e aquilo que QUER:</p>
+            
+            <div class="reta-container">
+                <div class="marcadores-wrapper">
+                    <span class="marcador x-marker" id="marcadorX">X</span>
+                    <span class="marcador y-marker" id="marcadorY">Y</span>
+                </div>
+                
+                <div class="regua">
+                    <div class="regua-linha"></div>
+                    <div class="regua-marcacoes" id="reguaMarcacoes"></div>
+                    <div class="regua-numeros" id="reguaNumeros"></div>
+                </div>
+                
+                <div class="distancia-info">
+                    <div class="linha-distancia" id="linhaDistancia"></div>
+                    <p class="casas-distancia"><span id="distanciaValor">0</span> Casas de distância.</p>
+                </div>
+            </div>
+            
+            <div class="botoes">
+                <button class="btn btn-parametros" onclick="window.location.href='estudos.html'">Ver parâmetros</button>
+                <button class="btn btn-realizar" onclick="window.location.href='teste.html'">Realizar Teste</button>
+            </div>
+        </div>
+        
+        <section class="interpretacao-section">
+            <div class="interpretacao-container">
+                <p class="interpretacao-intro">A distância entre o que você quer e onde está, é representado pela quantidade de casas para o que é almejado numa escala de:</p>
+                
+                <div class="escala-visual">
+                    <div class="escala-item muito-bom">
+                        <span class="escala-label">Muito Bom</span>
+                        <div class="escala-barra">
+                            <div class="escala-linha"></div>
+                            <span class="escala-range">1 a 4</span>
+                        </div>
+                    </div>
+                    
+                    <div class="escala-item bom">
+                        <span class="escala-label">Bom</span>
+                        <div class="escala-barra">
+                            <div class="escala-linha"></div>
+                            <span class="escala-range">5 a 7</span>
+                        </div>
+                    </div>
+                    
+                    <div class="escala-item razoavel">
+                        <span class="escala-label">Razoável</span>
+                        <div class="escala-barra">
+                            <div class="escala-linha"></div>
+                            <span class="escala-range">8 a 11</span>
+                        </div>
+                    </div>
+                    
+                    <div class="escala-item insuficiente">
+                        <span class="escala-label">Insuficiente</span>
+                        <div class="escala-barra">
+                            <div class="escala-linha"></div>
+                            <span class="escala-range">11 a 14</span>
+                        </div>
+                    </div>
+                    
+                    <div class="escala-item pessimo">
+                        <span class="escala-label">Péssimo</span>
+                        <div class="escala-barra">
+                            <div class="escala-linha"></div>
+                            <span class="escala-range">15 ou mais</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="interpretacao-texto" id="interpretacaoTexto">
+                    <p>Caso seu resultado seja entre muito bom e bom, você não está muito longe do que quer.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="estudo-section">
+            <div class="estudo-container">
+                <h2>Como estudar?</h2>
+                <p class="estudo-subtitle">Não existe consolidação do conhecimento sem repetição.</p>
+                
+                <p class="estudo-intro">Independente do resultado obtido, estudar ainda é uma atividade considerado difícil para muitos, mas aqui apresentamos um meio objetivo – não uma fórmula mágica –uma atitude sólida para alcançar seus objetivos acadêmicos.</p>
+                
+                <div class="estudo-metodos">
+                    <p>Flashcards, resumos e síntese são ótimas maneiras de simplificar o conteúdo na sua essência, assim revisões (lembrando que são feitas revisões de 2h até no máximo 4h: sendo quatro vezes de 30min e 10 de pausa, ou pra um estudo mais forte 45min e 10 de pausa.</p>
+                    
+                    <p>Para fixar o estudo é necessário estudar e revisar conteúdos, para assim criar a ficha e revela, fazer exercícios, exemplos, com uma revisão mensal do conteúdo geral lendo e escrevendo. Mas não deixe de dormir até de sono, para a manutenção correta das suas memórias</p>
+                    
+                    <p class="citacao">"Aula dada, aula estudada, hoje e antes do período de dormir" – Piorluigi Piazzi.</p>
+                </div>
+                
+                <div class="botoes">
+                    <button class="btn btn-parametros" onclick="window.location.href='estudos.html'">Ver parâmetros</button>
+                    <button class="btn btn-realizar" onclick="window.location.href='teste.html'">Realizar Teste</button>
+                </div>
+            </div>
+        </section>
     </main>
 
 <script>
@@ -41,6 +142,83 @@
     menuToggle.addEventListener('click', () => {
         nav.classList.toggle('active');
         menuToggle.classList.toggle('active');
+    });
+    
+    // Carregar resultados do teste
+    window.addEventListener('DOMContentLoaded', () => {
+        const valorX = parseInt(localStorage.getItem('valorX')) || 0;
+        const valorY = parseInt(localStorage.getItem('valorY')) || 0;
+        
+        // Determinar range da régua baseado nos valores
+        const maxValor = Math.max(valorX, valorY, 200);
+        const minValor = Math.min(valorX, valorY, 0);
+        const range = maxValor - minValor;
+        const inicio = Math.max(0, Math.floor((minValor - 20) / 20) * 20);
+        const fim = Math.ceil((maxValor + 20) / 20) * 20;
+        
+        // Gerar marcações e números da régua
+        const reguaMarcacoes = document.getElementById('reguaMarcacoes');
+        const reguaNumeros = document.getElementById('reguaNumeros');
+        const numCasas = (fim - inicio) / 20;
+        
+        for (let i = 0; i <= numCasas; i++) {
+            const valor = inicio + (i * 20);
+            
+            // Criar marcação
+            const marca = document.createElement('div');
+            marca.className = i % 5 === 0 ? 'marca grande' : 'marca';
+            reguaMarcacoes.appendChild(marca);
+            
+            // Criar número para cada marca
+            const numero = document.createElement('span');
+            numero.textContent = valor;
+            numero.className = 'numero-regua';
+            reguaNumeros.appendChild(numero);
+        }
+        
+        // Calcular distância em casas
+        const distancia = Math.abs(valorX - valorY) / 20;
+        document.getElementById('distanciaValor').textContent = Math.round(distancia);
+        
+        // Posicionar marcadores
+        const posX = ((valorX - inicio) / (fim - inicio)) * 100;
+        const posY = ((valorY - inicio) / (fim - inicio)) * 100;
+        
+        const marcadorX = document.getElementById('marcadorX');
+        const marcadorY = document.getElementById('marcadorY');
+        
+        marcadorX.style.left = posX + '%';
+        marcadorY.style.left = posY + '%';
+        marcadorX.style.transform = 'translateX(-50%)';
+        marcadorY.style.transform = 'translateX(-50%)';
+        
+        // Posicionar e dimensionar linha de distância
+        const linhaDistancia = document.getElementById('linhaDistancia');
+        const minPos = Math.min(posX, posY);
+        const maxPos = Math.max(posX, posY);
+        const largura = maxPos - minPos;
+        
+        linhaDistancia.style.width = largura + '%';
+        linhaDistancia.style.marginLeft = minPos + '%';
+        linhaDistancia.style.marginRight = 'auto';
+        
+        // Atualizar texto de interpretação
+        const interpretacaoTexto = document.getElementById('interpretacaoTexto');
+        let mensagem = '';
+        
+        if (distancia <= 4) {
+            mensagem = 'Caso seu resultado seja entre muito bom e bom, você não está muito longe do que quer.';
+        } else if (distancia <= 7) {
+            mensagem = 'Caso seu resultado seja entre muito bom e bom, você não está muito longe do que quer.';
+        } else if (distancia <= 11) {
+            mensagem = 'Seu resultado está na faixa razoável. Com dedicação e estudo consistente, você pode alcançar seus objetivos.';
+        } else if (distancia <= 14) {
+            mensagem = 'Se for entre insuficiente e péssimo, é preciso estudar muito.';
+        } else {
+            mensagem = 'Se for entre insuficiente e péssimo, é preciso estudar muito.';
+        }
+        
+        interpretacaoTexto.innerHTML = '<p>' + mensagem + '</p>';
     });
 </script>
 </body>
